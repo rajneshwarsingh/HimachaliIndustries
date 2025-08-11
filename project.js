@@ -144,3 +144,40 @@ function onScroll() {
 window.addEventListener('scroll', onScroll);
 
 // this is forhero number counting loop //
+
+// this is for faq accordian
+const items = document.querySelectorAll(".accordian-item");
+
+items.forEach((item) => {
+  const title = item.querySelector(".qus-titel");
+  const content = item.querySelector(".content");
+
+  title.addEventListener("click", () => {
+    // Close all other items
+    items.forEach((i) => {
+      if (i !== item) {
+        i.classList.remove("open");
+        const iContent = i.querySelector(".content");
+        iContent.style.maxHeight = null;
+        // iContent.style.paddingTop = "0px";
+        // iContent.style.paddingBottom = "0px";
+      }
+    });
+
+    // Toggle current item
+    const isOpen = item.classList.contains("open");
+    item.classList.toggle("open");
+
+    if (!isOpen) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    //   content.style.paddingTop = "16px";
+    //   content.style.paddingBottom = "16px";
+    } else {
+      content.style.maxHeight = null;
+    //   content.style.paddingTop = "0px";
+    //   content.style.paddingBottom = "0px";
+    }
+  });
+});
+
+// accordian end
